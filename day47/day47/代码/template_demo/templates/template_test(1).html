@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{#{{ dic.keys }}#}
+{#{{ num }}#}
+{#<br>#}
+{#{{ string }}#}
+{#<br>#}
+{#{{ name_list.0 }}#}
+{#<br>#}
+{#{{ dic.name }}  {{ dic.age }}#}
+{#<br>#}
+{#{{ tup }}#}
+{#<br>#}
+{#{{ name_set }}#}
+{#<br>#}
+{#{{ alex }}#}
+{#{{ alex.name }}#}
+{#{{ alex.talk }}#}
+
+{##}
+{#{{ baobei | default:'洪丽君' }}#}
+{#{{ kong|default:'暂无数据' }}#}
+{#<br>#}
+{#{{ filesize|filesizeformat }}#}
+{#<br>#}
+{#{{ 4|add:2 }}#}
+{#{{ '4'|add:'-2' }}#}
+{#{{ '4'|add:'xxx2' }}#}
+{#{{  name_list|add:name_list  }}#}
+{#{{ alex.name|upper|lower|title }}#}
+{##}
+{#<br>#}
+{#{{ name_list|add:name_list|length }}#}
+{#<br>#}
+{#{{ name_list|slice:'::-1' }}#}
+{#<br>#}
+{#{{ name_list.2 }}#}
+{#{{ name_list|last }}#}
+{#<br>#}
+{#{{ name_list|join:'_' }}#}
+{#<br>#}
+{#{{ long_str|truncatechars:'9' }}#}
+{#{{ long_str|truncatewords:'9' }}#}
+{#<br>#}
+{#{{ now }}#}
+{#<br>#}
+{#{{ a|safe }}#}
+{##}
+{##}
+{#<br>#}
+{#{% load mytags %}#}
+{##}
+{#{{ alex.name|add_arg:'dsb' }}#}
+
+
+{#<ul>#}
+{#    {% for name in name_list %}#}
+{#        <li>{{ forloop }}-{{ name }}</li>#}
+{#    {% endfor %}#}
+{##}
+{#</ul>#}
+{##}
+{#{% for name in name_list %}#}
+{##}
+{#    {% for string in name %}#}
+{##}
+{#        {{ string }},{{ forloop.parentloop }}#}
+{#    {% endfor %}#}
+{#    <br>#}
+{##}
+{#{% endfor %}#}
+
+
+{#{% for foo in kong %}#}
+{#    {{ foo }}#}
+{#{% empty %}#}
+{#    空空如也#}
+{#{% endfor %}#}
+
+
+{#{% if alex.age < 73 %}#}
+{#    alex正迈向第一个坎#}
+{##}
+{#{% elif alex.age == 73 %}#}
+{#    alex正在第一个坎上#}
+{##}
+{#{% elif alex.age < 84 %}#}
+{#    alex正迈向第二个坎上#}
+{##}
+{#{% elif alex.age == 84 %}#}
+{#    alex正在第二个坎上#}
+{##}
+{#{% elif alex.age > 84 %}#}
+{#    差不多了#}
+{##}
+{#{% endif %}#}
+{##}
+{#{% if 1|add:-1 > 0 %}#}
+{#    正确#}
+{#{% endif %}#}
+{##}
+{#{% if 10 > 5 and 5 > 1 %}#}
+{#    正确1#}
+{#{% else %}#}
+{#    错误#}
+{#{% endif %}#}
+{##}
+{#{% with p_list.0.name as alex %}#}
+{##}
+{#    {{ alex }}#}
+{#    {{ alex }}#}
+{#    {{ alex }}#}
+{##}
+{#{% endwith %}#}
+{##}
+{#{% with alex=p_list.0.name %}#}
+{##}
+{#    {{ alex }}#}
+{#    {{ alex }}#}
+{#    {{ alex }}#}
+{##}
+{#{% endwith %}#}
+
+{#{{ 7|add:3 }}#}
+{#{{ 7|add:-3 }}#}
+
+{#{% load mytags %}#}
+{##}
+{#{{ 7|cheng:3 }}#}
+{#{{ 7|chu:3 }}#}
+{##}
+{##}
+{#{% if 7|add:3 >= 10 %}#}
+{#    正确#}
+{#{% endif %}#}
+{##}
+{#<span>{% widthratio 100 3 1 %}</span>#}
+{#  a b c   a/b*c  #}
+{##}
+{##}
+{#{{  '百度'|show_a:'www.baidu.com'  }}#}
+
+
+{% load mytags %}
+
+{% str_join 'a' 'b' 'c' k1='d' k2='e' k3='f' %}
+
+
+</body>
+</html>

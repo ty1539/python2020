@@ -1,0 +1,49 @@
+{% extends 'publisher_list.html' %}
+
+
+{% block author_active %}
+active
+{% endblock %}
+
+{% block pub_active %}
+
+{% endblock %}
+
+{% block main %}
+
+    <h2>作者列表</h2>
+    <table class="table table-responsive table-hover">
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>ID</th>
+            <th>姓名</th>
+            <th>代表作</th>
+            <th>操作</th>
+        </tr>
+
+        </thead>
+        <tbody>
+
+        {% for author in all_authors %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ author.pk }}</td>
+                <td>{{ author.name }}</td>
+                <td>
+                    {% for book in author.books.all %}
+                        《 {{ book.name }} 》
+                    {% endfor %}
+                </td>
+                <td>
+                    <a href="/author_del/?id={{ author.pk }}">删除</a>
+                    <a href="/author_edit/?id={{ author.pk }}">编辑</a>
+                </td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+
+{% endblock %}

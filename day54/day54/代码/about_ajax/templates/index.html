@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form action="" method="post">
+
+    {% csrf_token %}
+    <input type="text" name="i1" value="{{ i1 }}">+
+    <input type="text" name="i2" value="{{ i2 }}">=
+    <input type="text" name="i3" value="{{ i3 }}">
+    <button>计算</button>
+
+</form>
+
+</body>
+</html>

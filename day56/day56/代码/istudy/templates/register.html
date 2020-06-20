@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form action="" method="post" novalidate>
+
+    {% csrf_token %}
+
+    <p>
+        <label for="{{ form_obj.username.id_for_label }}"> {{ form_obj.username.label }}</label>
+        {{ form_obj.username }} <span>{{ form_obj.username.errors.0 }}</span>
+    </p>
+
+    <p>
+        <label for="{{ form_obj.password.id_for_label }}"> {{ form_obj.password.label }}</label>
+        {{ form_obj.password }} <span>{{ form_obj.password.errors.0 }}</span>
+    </p>
+
+    <p>
+        <label for="{{ form_obj.re_pwd.id_for_label }}"> {{ form_obj.re_pwd.label }}</label>
+        {{ form_obj.re_pwd }} <span>{{ form_obj.re_pwd.errors.0 }}</span>
+    </p>
+
+    <p>
+        <label for="{{ form_obj.position.id_for_label }}"> {{ form_obj.position.label }}</label>
+        {{ form_obj.position }} <span>{{ form_obj.position.errors.0 }}</span>
+    </p>
+    <p>
+        <label for="{{ form_obj.company.id_for_label }}"> {{ form_obj.company.label }}</label>
+        {{ form_obj.company }} <span>{{ form_obj.company.errors.0 }}</span>
+    </p>
+    <p>
+        <label for="{{ form_obj.phone.id_for_label }}"> {{ form_obj.phone.label }}</label>
+        {{ form_obj.phone }} <span>{{ form_obj.phone.errors.0 }}</span>
+    </p>
+
+
+    <button>注册</button>
+
+</form>
+
+
+</body>
+</html>

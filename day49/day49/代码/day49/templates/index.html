@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<a href="{% url 'app01:blog' %}">博客blog</a>
+<a href="{% url 'app01:blogs' '2020' '02' %}">博客blogs</a>
+{% url 'app01:blogs'  month='03' year='2021' %}
+<br>
+{% url 'app01:home' %}
+<br>
+{% url 'app02:home' %}
+</body>
+</html>

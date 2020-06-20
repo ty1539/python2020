@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{#{% csrf_token %}#}
+
+<input type="text" name="i1" as="1">+
+<input type="text" name="i2">=
+<input type="text" name="i3">
+<button id="b1">计算</button>
+
+<br>
+<input type="text" name="i11">+
+<input type="text" name="i22">=
+<input type="text" name="i33">
+<button id="b2">计算</button>
+
+
+<button id="b3">参数测试</button>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+
+<script src="/static/ajax_setup.js"></script>
+
+<script>
+
+    $('#b1').click(function () {
+
+        $.ajax({
+            url: '/calc/',
+            type: 'post',
+            data: {
+                'x1': $('[as="1"]').val(),
+                'x2': $('[name="i2"]').val(),
+            },
+            success: function (data) {
+                $('[name="i3"]').val(data)
+            }
+        })
+
+    });
+
+    $('#b2').click(function () {
+
+        $.ajax({
+            url: '/calc1/',
+            type: 'post',
+            {#headers:{#}
+            {#    'x-csrftoken':$('[name="csrfmiddlewaretoken"]').val()},   // 'HTTP_X_CSRFTOKEN'#}
+            data: {
+                'x1': $('[name="i11"]').val(),
+                'x2': $('[name="i22"]').val(),
+            },
+            success: function (data) {
+                $('[name="i33"]').val(data)
+            }
+        })
+
+    });
+    $('#b3').click(function () {
+
+        $.ajax({
+            url: '/test/',
+            type: 'post',
+            data: {
+                {#csrfmiddlewaretoken:$('[name="csrfmiddlewaretoken"]').val(),#}
+                name: 'alex',
+                age: 84,
+                hobby: JSON.stringify(['抽烟', '喝酒', '画大饼'])
+            },
+            success: function (data) {
+                console.log(data)
+                console.log(data.status)
+
+            }
+        })
+
+    })
+
+</script>
+
+</body>
+</html>

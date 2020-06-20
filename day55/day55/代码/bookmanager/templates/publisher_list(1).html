@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="/static/plugins/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/dsb.css">
+
+    {% block css %}
+
+    {% endblock %}
+</head>
+
+<body>
+
+{% include 'nav.html' %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li class="{% block pub_active %}active{% endblock %}"><a href="{% url 'publisher' %}">出版社列表</a></li>
+                <li class="{% block book_active %}{% endblock %}"><a href="/book_list/">书籍列表</a></li>
+                <li class="{% block author_active %}{% endblock %}"><a href="/author_list/">作者列表</a></li>
+
+            </ul>
+
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+            {% block main %}
+
+                <h2 class="sub-header">出版社列表</h2>
+                <a class="btn btn-primary btn-sm" href="{% url 'pub_add' %}">新增</a>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>id</th>
+                            <th>出版社名称</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for i in all_publishers %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ i.pk }}</td>
+                                <td>{{ i.name }}</td>
+                                <td>
+                                    <button url="{% url 'del' 'publisher' i.pk %}" class="btn btn-danger btn-sm">删除
+                                    </button>
+                                    {#                                    <a class="btn btn-danger btn-sm" href="{% url 'del' 'publisher' i.pk %}">删除</a>#}
+                                    <a class="btn btn-primary btn-sm" href="{% url 'pub_edit' i.pk %}">编辑</a>
+
+                                </td>
+                            </tr>
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+
+                {% load mytags %}
+                {% pagination 3 %}
+
+            {% endblock %}
+
+
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script>
+    {#swal("Hello world!");#}
+
+
+    {#$('.btn-danger').click(function () {#}
+    {#    var _this = $(this)#}
+    {#    $.ajax({#}
+    {#        url: $(this).attr('url'),#}
+    {#        type: 'get',#}
+    {#        success: function (data) {#}
+    {#            // 地址跳转#}
+    {#location.href = data#}
+    {#            if (data.status === 200) {#}
+    {#                // 后端删除成功  前端删除该行数据#}
+    {#                _this.parent().parent().remove()#}
+    {#            }#}
+    {#        }#}
+    {#    })#}
+    {#  }) #}
+
+    $('.btn-danger').click(function () {
+        swal({
+            title: "确认删除?",
+            text: "一旦删除，数据无法恢复!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        url: $(this).attr('url'),
+                        type: 'get',
+                        success:  (data) => {
+                            // 地址跳转
+                            {#location.href = data#}
+                            if (data.status === 200) {
+                                // 后端删除成功  前端删除该行数据
+                                $(this).parent().parent().remove();
+                                swal("Poof! Your imaginary file has been deleted!", {
+                                    icon: "success",
+                                });
+                            } else {
+                                swal('删除失败！',{
+                                    icon:'error'
+                                });
+                            }
+                        }
+                    })
+                } else {
+                    swal("Your imaginary file is safe!");
+                }
+            });
+
+    })
+
+
+</script>
+
+
+{% block js %}
+
+
+{% endblock %}
+
+
+</body>
+
+
+</html>

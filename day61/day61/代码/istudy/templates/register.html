@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>注册丨iStudy</title>
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<body>
+<div style="margin-top:5% ">
+    <h1>iStudy知识学习平台</h1>
+    <div class="connect">
+        <p>欢迎注册</p>
+    </div>
+    <form action="" method="post" id="loginForm" novalidate enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div>  {{ form_obj.username }}
+            {{ form_obj.username.errors.0 }}</div>
+        <div>  {{ form_obj.password }}
+            {{ form_obj.password.errors.0 }}</div>
+        <div>  {{ form_obj.re_pwd }}
+            {{ form_obj.re_pwd.errors.0 }}</div>
+        <div>  {{ form_obj.position }}
+            {{ form_obj.position.errors.0 }}</div>
+        <div>  {{ form_obj.company }}
+            {{ form_obj.company.errors.0 }}</div>
+        <div>  {{ form_obj.phone }}
+            {{ form_obj.phone.errors.0 }}</div>
+        <div>  {{ form_obj.avatar }}
+            {{ form_obj.phone.errors.0 }}</div>
+
+
+        <button id="submit" type="submit">注册</button>
+    </form>
+    <a href="{% url 'login' %}">
+        <button type="button" class="register-tis">有账号，去登录</button>
+    </a>
+</div>
+</body>
+
+
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/common.js' %}"></script>
+<script src="{% static 'js/supersized.3.2.7.min.js' %}"></script>
+<script src="{% static 'js/supersized-init.js' %}"></script>
+
+<script>
+
+    jQuery(function ($) {
+        $.supersized({
+            slide_interval: 4000,
+            transition: 1,
+            transition_speed: 1000,
+            performance: 1,
+            min_width: 0,
+            min_height: 0,
+            vertical_center: 1,
+            horizontal_center: 1,
+            fit_always: 0,
+            fit_portrait: 1,
+            fit_landscape: 0,
+            slide_links: 'blank',
+            slides: [{image: '{% static 'images/1.jpg' %}'}, {image: '{% static 'images/2.jpg' %}'}, {image: '{% static 'images/3.jpg' %}'}]
+        });
+    });
+
+
+</script>
+</html>
